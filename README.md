@@ -14,3 +14,5 @@
 ## Deployment
 
 ## Links
+
+- [Extend or add custom claims using IClaimsTransformation])https://learn.microsoft.com/en-us/aspnet/core/security/authentication/claims?view=aspnetcore-7.0#extend-or-add-custom-claims-using-iclaimstransformation)
