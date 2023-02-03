@@ -9,4 +9,6 @@ public class AzureAdOptions
   public string Instance { get; set; } = string.Empty;
   public string Domain { get; set; } = string.Empty;
   public string GraphApiScope { get; set; } = string.Empty;
+  public string DataReadAADGroupObjectId { get; set; } = string.Empty;
+  public string DataWriteAADGroupObjectId { get; set; } = string.Empty;
 }
