@@ -6,6 +6,12 @@ namespace weatherApp.Pages;
 
 public class IndexModel : PageModel
 {
+  [BindProperty(SupportsGet = true)]
+  public List<string> AzureAdGroups { get; set; } = new List<string>();
+  [BindProperty(SupportsGet = true)]
+  public List<string> AzureAdRoles { get; set; } = new List<string>();
+  [BindProperty(SupportsGet = true)]
+  public List<WeatherForecast> WeatherForecasts { get; set; } = new List<WeatherForecast>();
   private readonly ILogger<IndexModel> _logger;
   private readonly IWeatherApiService _weatherApiService;
 
@@ -15,11 +21,10 @@ public class IndexModel : PageModel
     _weatherApiService = weatherApiService;
   }
 
-  public async void OnGet()
+  public async Task OnGetAsync()
   {
-    var groups = await _weatherApiService.GetAzureAdGroupsAsync();
-    var roles = await _weatherApiService.GetAzureAdRolesAsync();
-    var forecasts = await _weatherApiService.GetWeatherForecastsAsync();
-
+    AzureAdGroups = await _weatherApiService.GetAzureAdGroupsAsync();
+    AzureAdRoles = await _weatherApiService.GetAzureAdRolesAsync();
+    WeatherForecasts = await _weatherApiService.GetWeatherForecastsAsync();
   }
 }
