@@ -23,19 +23,19 @@ public class MicrosoftGraphClaimsTransformationService : IClaimsTransformation
       throw new ArgumentNullException("Identity cannot be null");
     }
 
-    if (!principal.HasClaim(claim => claim.Type == "http://schemas.xmlsoap.org/claims/Group"))
+    if (!principal.HasClaim(claim => claim.Type == Constants.GroupClaimType))
     {
       ClaimsIdentity groupClaimsIdentity = new ClaimsIdentity();
-      Claim? servicePrincipalObjectId = identity.Claims.FirstOrDefault(x => x.Type == "http://schemas.microsoft.com/identity/claims/objectidentifier");
+      Claim? servicePrincipalObjectId = identity.Claims.FirstOrDefault(x => x.Type == Constants.ObjectIdentifierClaimType);
       if (servicePrincipalObjectId != null)
       {
-        _logger.LogInformation($"Retrieving group memebrship for {servicePrincipalObjectId.Value}");
+        _logger.LogDebug($"Retrieving group memebrship for {servicePrincipalObjectId.Value}");
         var groups = await _graphServiceClient.ServicePrincipals[servicePrincipalObjectId.Value].MemberOf.Request().GetAsync();
 
         foreach (var group in groups)
         {
-          _logger.LogInformation("Adding groups claim to principal");
-          groupClaimsIdentity.AddClaim(new Claim("http://schemas.xmlsoap.org/claims/Group", group.Id));
+          _logger.LogDebug("Adding groups claim to principal");
+          groupClaimsIdentity.AddClaim(new Claim(Constants.GroupClaimType, group.Id));
         };
 
         principal.AddIdentity(groupClaimsIdentity);

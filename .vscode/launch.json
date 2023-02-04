@@ -4,11 +4,12 @@
   // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
   "configurations": [
+
     {
-      "name": ".NET Core Launch (web)",
+      "name": ".NET Core Launch (api)",
       "type": "coreclr",
       "request": "launch",
-      "preLaunchTask": "build",
+      "preLaunchTask": "buildApi",
       "program": "${workspaceFolder}/src/weatherApi/bin/Debug/net7.0/weatherApi.dll",
       "args": [],
       "cwd": "${workspaceFolder}/src/weatherApi",
@@ -19,9 +20,23 @@
       },
       "env": {
         "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    {
+      "name": ".NET Core Launch (web)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "buildApp",
+      "program": "${workspaceFolder}/src/weatherApp/bin/Debug/net7.0/weatherApp.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/src/weatherApp",
+      "stopAtEntry": false,
+      "serverReadyAction": {
+        "action": "openExternally",
+        "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
       },
-      "sourceFileMap": {
-        "/Views": "${workspaceFolder}/Views"
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
     {
