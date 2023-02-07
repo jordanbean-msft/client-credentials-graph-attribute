@@ -1,0 +1,47 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+  <div>
+  <h2>Azure AD Groups of client</h2>
+  <table class="center">
+    <tbody>
+      @foreach (var group in Model.AzureAdGroups)
+      {
+        <tr>
+          <td>@group</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+  </div>
+  <div>
+  <h2>Azure AD Roles of client</h2>
+  <table class="center">
+    <tbody>
+      @foreach (var role in Model.AzureAdRoles)
+      {
+        <tr>
+          <td>@role</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+  </div>
+  <div>
+  <h2>Weather Forecasts</h2>
+  <table class="center">
+    <tbody>
+      @foreach (var weatherForecast in Model.WeatherForecasts)
+      {
+        <tr>
+          <td>@weatherForecast.Summary</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+  </div>
+</div>
